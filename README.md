@@ -14,3 +14,4 @@ deactivate
 pip install -r requirements.txt
 and
 Creat env para chave_api
+and user_permitido

@@ -8,6 +8,10 @@ CHAVE_API = os.getenv('chave_api')
 
 bot = telebot.TeleBot(CHAVE_API)
 
+id_permitido = int(os.getenv('user_permitido'))
+
+lista_user_permitidos = {id_permitido}
+
 @bot.message_handler(commands=["pizza"])
 def pizza(mensagem):
     bot.send_message(mensagem.chat.id, "Saindo a pizza pra sua casa: Tempo de espera em 20min")
@@ -40,7 +44,12 @@ def opcao3(mensagem):
 
 
 def verificar(mensagem):
-    return True
+    user_id=mensagem.from_user.id
+    print("ID do usario:",user_id)
+    if(user_id in lista_user_permitidos):
+        print ("true")
+    
+    return user_id in lista_user_permitidos
 
 @bot.message_handler(func=verificar)
 def responder(mensagem):
@@ -49,7 +58,7 @@ def responder(mensagem):
      /opcao1 Fazer um pedido
      /opcao2 Reclamar de um pedido
      /opcao3 Finalizar atendimento
-Responder qualquer outra coisa não vai funcionar, clique em uma das opções"""
+     Responder qualquer outra coisa não vai funcionar, clique em uma das opções""" 
     bot.reply_to(mensagem, texto)
 
 bot.polling()
