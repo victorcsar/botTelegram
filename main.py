@@ -58,7 +58,7 @@ def responder(mensagem):
      /opcao1 Fazer um pedido
      /opcao2 Reclamar de um pedido
      /opcao3 Finalizar atendimento
-     Responder qualquer outra coisa não vai funcionar, clique em uma das opções""" 
+    Responder qualquer outra coisa não vai funcionar, clique em uma das opções"""
     bot.reply_to(mensagem, texto)
 
 bot.polling()
